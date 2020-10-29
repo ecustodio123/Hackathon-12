@@ -1,0 +1,10 @@
+<table class="table table-hover">
+    <tr>
+        <td width="70px">
+            <img src="{{ post.author.avatar(70) }}">
+        </td>
+        <td>{{ post.author.nombre }}:
+            <br /> El alumno <b>{{ post.alumno }}</b> tiene la nota de <br /> <b>{{ post.nota }}</b> en el curso de <b>{{ post.author.curso }} </b> El examen fue <b> {{ post.tipo_examen }}</b> y el alumno tuvo como asistencia <b> {{ post.asistencia }}</b>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,35 @@
+{% extends 'layouts/base_template.html' %} {% import 'bootstrap/wtf.html' as wtf %} {% block app_content %}
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-6">
+        <div class="well well-sm">
+            <div class="row">
+                <div class="col-sm-6 col-md-4">
+                    <img src="{{ user.avatar(380) }}" class="img-rounded img-responsive">
+                </div>
+                <div class="col-sm-6 col-md-8">
+                    <h4>Hola, {{ user.nombre }}</h4>
+                    <p>
+                        {% if user.last_seen %}
+                        <i class="glyphicon glyphicon-globe"></i> Ultima visita : {{ user.last_seen.strftime('%Y-%m-%d %H:%M:%S') }}
+                        <br /> {% endif %} {% if user.about_me %}
+                        <i class="glyphicon glyphicon-user"></i> {{ user.about_me }}
+                        <br /> {% endif %}
+                    </p>
+                    <!-- {% if user == current_user %}
+                    <div class="btn-group">
+                        <a href="" class="btn btn-primary">Editar Perfil</a>
+                    </div> -->
+                    <!-- {% endif %} -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if user == current_user %}
+<div class="row">
+    <div class="col-md-12">
+        {{ wtf.quick_form(form) }}
+    </div>
+</div>
+<br /> {% endif %} {% if user.posts %} {% for post in user.posts %} {% include 'partials/_post.html' %} {% endfor %} {% endif %} {% endblock %}

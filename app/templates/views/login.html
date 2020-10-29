@@ -1,0 +1,13 @@
+{% extends 'layouts/base_template.html' %} {% import 'bootstrap/wtf.html' as wtf %} {% block app_content %}
+<div class="row">
+    <div class="col-md-4">
+        {{ wtf.quick_form(form) }}
+        <br />
+        <p>
+            ¿Nuevo Usuario?
+            <a href="{{ url_for('register') }}">Click para registrarse como profesor</a>
+            <a href="{{ url_for('registeralumno') }}">Click para registrarse como alumno</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

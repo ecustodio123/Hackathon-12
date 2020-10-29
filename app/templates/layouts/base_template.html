@@ -1,0 +1,47 @@
+{% extends 'bootstrap/base.html' %} {% block title %} {% if title %} {{ title }} - Escuela Grupo 03 {% else %} Bienvenidos al colegio - El Grupo 03 {% endif %} {% endblock %} {% block navbar %}
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{ url_for('index') }}">Novedades</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li>
+                <a href="{{ url_for('index') }}">Inicio</a>
+            </li>
+            {% if current_user.is_authenticated %}
+            <li>
+                <a href="{{ url_for('profile', nombre=current_user.nombre) }}">Actualizar notas</a>
+            </li>
+            {% endif %}
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            {% if current_user.is_authenticated %}
+            <li>
+                <a href="{{ url_for('logout') }}">Cerrar Sesión</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="{{ url_for('register') }}">Registrar Profesor</a>
+            </li>
+            <li>
+                <a href="{{ url_for('registeralumno') }}">Registrar Alumno</a>
+            </li>
+            <li>
+                <a href="{{ url_for('login') }}">Iniciar Sesión como Profesor</a>
+            </li>
+            <li>
+                <a href="{{ url_for('loginalumno') }}">Iniciar Sesión como Alumno</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+{% endblock %} {% block content %}
+<div class="container">
+    {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+    <div class="alert alert-info">
+        {{ message }}
+    </div>
+    {% endfor %} {% endif %} {% endwith %} {% block app_content %} {% endblock %}
+</div>
+{% endblock %}
